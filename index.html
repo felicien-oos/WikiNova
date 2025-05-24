@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ultimate ChatGPT Futuriste - Ultra X 2000%</title>
 <style>
-  /* RESET + BASE */
+  /* RESET */
   * {
     box-sizing: border-box;
   }
@@ -166,6 +166,7 @@
     opacity: 0;
     transform: translateY(10px);
     animation: fadeInUp 0.35s ease forwards;
+    white-space: pre-wrap;
   }
   @keyframes fadeInUp {
     to {
@@ -234,5 +235,47 @@
     cursor: pointer;
     box-shadow:
       0 0 18px #00e5ffcc,
-      
+      0 0 30px #00e5ffcc;
+    transition: background 0.3s ease;
+  }
+  button#sendBtn:hover {
+    background: #33f6ff;
+  }
+  button#sendBtn:disabled {
+    background: #00455f;
+    cursor: default;
+    box-shadow: none;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <span>ULTIMATE</span> ChatGPT <br/> <small style="font-weight:400; font-size:0.7rem; color:#00e5ff88;">Ultra Futuriste 2000%</small>
+  </header>
+  <main id="mainContent">
+    <!-- Ici va le formulaire ou le chat -->
+  </main>
+</div>
+
+<script>
+  // ===== UTILITAIRES =====
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  // Validation email basique
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  // Ajoute un loader futuriste
+  function createLoader() {
+    const loader = document.createElement('div');
+    loader.classList.add('loader');
+    return loader;
+  }
+
+  // Ajoute
+
 
