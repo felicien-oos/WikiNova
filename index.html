@@ -1,263 +1,149 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ChatGPT Ultra Futuriste 2000%</title>
-<style>
-  /* RESET */
-  * {
-    box-sizing: border-box;
-  }
-  body, html {
-    margin: 0; padding: 0;
-    height: 100%;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    color: #c0c0ff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  #app {
-    width: 100%;
-    max-width: 720px;
-    height: 90vh;
-    background: rgba(12,13,25,0.95);
-    border-radius: 20px;
-    box-shadow:
-      0 0 30px #00e5ffbb,
-      inset 0 0 40px #00e5ff44;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  header {
-    padding: 1rem 2rem;
-    text-align: center;
-    font-weight: 900;
-    font-size: 2.2rem;
-    letter-spacing: 0.2em;
-    color: #00e5ff;
-    text-shadow:
-      0 0 5px #00e5ffaa,
-      0 0 15px #00e5ffcc,
-      0 0 30px #00e5ffee;
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-  /* Logo SVG */
-  #logo {
-    width: 48px;
-    height: 48px;
-    filter: drop-shadow(0 0 10px #00e5ffcc);
-  }
-  #logo path {
-    fill: #00e5ff;
-  }
-  #logo:hover path {
-    fill: #33f6ff;
-    filter: drop-shadow(0 0 20px #33f6ffcc);
-    transition: fill 0.3s ease;
-  }
-  header span.title {
-    color: #ff6ec4;
-    text-shadow:
-      0 0 5px #ff6ec4aa,
-      0 0 15px #ff6ec4cc,
-      0 0 30px #ff6ec4ee;
-  }
-  header small {
-    font-weight: 400;
-    font-size: 0.85rem;
-    color: #00e5ff88;
-    margin-left: 0.3rem;
-  }
-
-  main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 2rem;
-    overflow-y: auto;
-    gap: 1rem;
-  }
-
-  /* Phrase d'intro */
-  #intro {
-    color: #99ccffcc;
-    font-size: 1.1rem;
-    text-align: center;
-    user-select: none;
-    font-style: italic;
-    text-shadow: 0 0 5px #00e5ff66;
-  }
-
-  /* Loader futuriste */
-  .loader {
-    align-self: center;
-    width: 48px;
-    height: 48px;
-    border: 5px solid transparent;
-    border-top: 5px solid #00e5ff;
-    border-radius: 50%;
-    animation: spin 1.5s linear infinite;
-    margin: 2rem auto;
-    filter: drop-shadow(0 0 10px #00e5ff);
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* Chat area */
-  .chat-window {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding-right: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    scroll-behavior: smooth;
-  }
-  .message {
-    max-width: 70%;
-    padding: 14px 20px;
-    border-radius: 28px;
-    font-size: 1.2rem;
-    line-height: 1.4;
-    user-select: text;
-    word-break: break-word;
-    filter: drop-shadow(0 0 4px #0009);
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.35s ease forwards;
-    white-space: pre-wrap;
-  }
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaMind AI</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
     }
-  }
-  /* Messages utilisateur (droite) */
-  .message.user {
-    background: linear-gradient(145deg, #ff6ec4, #ff91b8);
-    color: #1b0011;
-    align-self: flex-end;
-    border-bottom-right-radius: 8px;
-    box-shadow:
-      0 0 16px #ff6ec4cc,
-      0 0 30px #ff6ec4aa;
-  }
-  /* Messages bot (gauche) */
-  .message.bot {
-    background: linear-gradient(145deg, #00e5ff, #33f6ff);
-    color: #001f27;
-    align-self: flex-start;
-    border-bottom-left-radius: 8px;
-    box-shadow:
-      0 0 16px #00e5ffcc,
-      0 0 30px #00e5ffaa;
-  }
-
-  /* Typing effect container */
-  .typing {
-    font-style: italic;
-    color: #00e5ffcc;
-    margin-left: 10px;
-    filter: drop-shadow(0 0 8px #00e5ffcc);
-  }
-
-  /* Footer chat input */
-  footer {
-    padding: 1rem 2rem;
-    background: #111828cc;
-    border-top: 1px solid #00e5ff44;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    border-radius: 0 0 20px 20px;
-  }
-  textarea#chatInput {
-    flex-grow: 1;
-    resize: none;
-    border-radius: 20px;
-    padding: 1rem 1.5rem;
-    font-size: 1.2rem;
-    font-family: 'Segoe UI', sans-serif;
-    border: none;
-    outline: none;
-    background: #001f2755;
-    color: #c0c0ff;
-    box-shadow: inset 0 0 12px #00e5ff88;
-    max-height: 120px;
-    min-height: 50px;
-    transition: box-shadow 0.3s ease;
-  }
-  textarea#chatInput:focus {
-    box-shadow: inset 0 0 20px #00e5ffcc;
-  }
-  button#sendBtn {
-    background: #00e5ff;
-    border: none;
-    border-radius: 20px;
-    padding: 1rem 1.7rem;
-    font-weight: 700;
-    color: #001f27;
-    font-size: 1.3rem;
-    cursor: pointer;
-    box-shadow:
-      0 0 18px #00e5ffcc,
-      0 0 30px #00e5ffcc;
-    transition: background 0.3s ease;
-  }
-  button#sendBtn:hover {
-    background: #33f6ff;
-  }
-  button#sendBtn:disabled {
-    background: #00455f;
-    cursor: default;
-    box-shadow: none;
-  }
-
-  /* Lien externe futuriste */
-  #footerLinks {
-    padding: 0.8rem 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #00e5ffcc;
-    font-weight: 600;
-    user-select: none;
-    border-top: 1px solid #00e5ff44;
-  }
-  #footerLinks a {
-    color: #33f6ff;
-    text-decoration: none;
-    font-weight: 700;
-    margin: 0 0.6rem;
-    transition: color 0.3s ease;
-  }
-  #footerLinks a:hover {
-    color: #ff6ec4;
-    text-shadow: 0 0 10px #ff6ec4cc;
-  }
-</style>
+    .header {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-image: url('https://images.unsplash.com/photo-1581091870622-2c1a88d54454?fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+    .container {
+      background: white;
+      margin: -50px auto 0 auto;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #00c6ff;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    .hidden { display: none; }
+    .error { color: red; }
+    .notice {
+      font-size: 0.9rem;
+      color: #ff6600;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
-<div id="app">
-  <header>
-    <svg id="logo" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10 5.522 0 10-4.477 10-10 0-5.523-4.478-10-10-10zm0 18.5a8.5 8.5 0 1 1 0-17 8.5 8.5 0 0 1 0 17z" fill="#00e5ff"/>
-      <path d="M12 7a5 5 0 0 1 5 5h-2a3 3 0 1 0-3 3v2a5 5 0 0 1 0-10z" fill="#00e5ff"/>
-    </svg>
-    <span class="title">ChatGPT <small>version 2000%</small></span>
-  </header>
-  <main id="mainContent">
-    <div id="intro">Bienvenue dans l’alliance ultime de l’intelligence artificielle et de <a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia"
+  <div class="header">
+    NovaMind AI
+  </div>
+
+  <div class="container" id="signup">
+    <p>Inscris-toi pour parler à ton assistant futuriste !</p>
+    <p class="notice">⚠️ Avertissement : tu dois retenir ton mot de passe. Il est obligatoire pour se reconnecter !</p>
+    <input type="email" id="email" placeholder="Adresse e-mail">
+    <input type="date" id="birthdate" placeholder="Date de naissance">
+    <input type="password" id="password" placeholder="Mot de passe (min. 6 caractères)">
+    <div class="error" id="error"></div>
+    <button onclick="validateSignup()">S'inscrire</button>
+  </div>
+
+  <div class="container hidden" id="chat">
+    <div class="logo">🤖 NovaMind AI</div>
+    <div id="chatbox" style="height: 300px; overflow-y: auto; background: #1b1b2f; color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;"></div>
+    <input type="text" id="userInput" placeholder="Pose une question...">
+    <button onclick="handleMessage()">Envoyer</button>
+  </div>
+
+  <script>
+    const kindWords = ["bonjour", "salut", "coucou", "yo", "bonsoir", "hello", "hé", "hey"];
+    const homeworkCount = { count: 0 };
+
+    function validateSignup() {
+      const email = document.getElementById('email').value;
+      const birthdate = document.getElementById('birthdate').value;
+      const password = document.getElementById('password').value;
+      const errorBox = document.getElementById('error');
+
+      if (!email.includes('@') || !birthdate || password.length < 6) {
+        errorBox.textContent = "Toutes les informations doivent être valides !";
+        return;
+      }
+
+      alert("⚠️ AVERTISSEMENT : Souviens-toi bien de ton mot de passe. Tu ne pourras pas te reconnecter sans lui !");
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+
+      document.getElementById('signup').classList.add('hidden');
+      document.getElementById('chat').classList.remove('hidden');
+    }
+
+    function handleMessage() {
+      const input = document.getElementById('userInput');
+      const chatbox = document.getElementById('chatbox');
+      const msg = input.value.toLowerCase();
+      const userLine = `<p><strong>Moi :</strong> ${msg}</p>`;
+      chatbox.innerHTML += userLine;
+
+      if (msg.includes("x") || msg.includes("combien") || msg.includes("résous")) {
+        homeworkCount.count++;
+        if (homeworkCount.count >= 5) {
+          chatbox.innerHTML += `<p style='color:red'><strong>NovaMind :</strong> Les devoirs sont interdits. Vos questions sont maintenant bloquées.</p>`;
+          input.disabled = true;
+          return;
+        }
+      }
+
+      if (kindWords.includes(msg)) {
+        chatbox.innerHTML += `<p><strong>NovaMind :</strong> ${msg.charAt(0).toUpperCase() + msg.slice(1)} à toi aussi ! 😊</p>`;
+        input.value = "";
+        return;
+      }
+
+      if (msg.includes("vie privée") || msg.includes("je connais quelqu'un") || msg.includes("besoin d'aide")) {
+        chatbox.innerHTML += `<p><strong>NovaMind :</strong> Désolé, je suis juste là pour l'éducation. Mais si tu veux vraiment en parler, voici un lien : <a href='https://chat.openai.com' target='_blank'>Parler à ChatGPT</a></p>`;
+        input.value = "";
+        return;
+      }
+
+      fetch(`https://fr.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(msg)}`)
+        .then(res => res.json())
+        .then(data => {
+          chatbox.innerHTML += `<p><strong>NovaMind :</strong> ${data.extract || "Je n'ai pas compris, peux-tu reformuler ?"}</p>`;
+        })
+        .catch(() => {
+          chatbox.innerHTML += `<p><strong>NovaMind :</strong> Je n'ai pas trouvé d'information sur ce sujet. Essaie une autre question.</p>`;
+        });
+
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
 
 
