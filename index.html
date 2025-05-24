@@ -1,201 +1,238 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WikiNova Ultra Futuriste</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-      margin: 0;
-      overflow: hidden;
-    }
-    .container {
-      background: rgba(255,255,255,0.05);
-      padding: 2rem;
-      border-radius: 2rem;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-      width: 90%;
-      max-width: 600px;
-      animation: fadeIn 1s ease-out;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    input, textarea {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      border-radius: 1rem;
-      border: none;
-      background: #fff;
-      color: #000;
-      font-size: 1.2rem;
-      resize: none;
-    }
-    textarea {
-      min-height: 120px;
-      max-height: 200px;
-    }
-    button {
-      background: #00d9ff;
-      border: none;
-      padding: 1rem;
-      width: 100%;
-      border-radius: 1.5rem;
-      color: black;
-      font-weight: bold;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #00bfff;
-    }
-    .hidden { display: none; }
-    .title {
-      font-size: 2.2rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .intro {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      max-width: 90%;
-    }
-    #response {
-      margin-top: 1rem;
-      font-size: 1.3rem;
-      text-align: center;
-      animation: fadeIn 0.5s ease-in;
-      min-height: 60px;
-    }
-    a {
-      color: #00d9ff;
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container" id="step1">
-    <h2>Étape 1: Votre adresse e-mail</h2>
-    <input type="email" id="email" placeholder="Entrez votre e-mail" />
-    <button onclick="nextStep(2)">Suivant</button>
-  </div>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ultimate ChatGPT Futuriste - Ultra X 2000%</title>
+<style>
+  /* RESET + BASE */
+  * {
+    box-sizing: border-box;
+  }
+  body,html {
+    margin: 0; padding: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #c0c0ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #app {
+    width: 100%;
+    max-width: 720px;
+    height: 90vh;
+    background: rgba(12,13,25,0.92);
+    border-radius: 20px;
+    box-shadow:
+      0 0 30px #00e5ffbb,
+      inset 0 0 40px #00e5ff44;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  header {
+    padding: 1rem 2rem;
+    text-align: center;
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: 0.2em;
+    color: #00e5ff;
+    text-shadow:
+      0 0 5px #00e5ffaa,
+      0 0 15px #00e5ffcc,
+      0 0 30px #00e5ffee;
+    user-select: none;
+  }
+  header span {
+    color: #ff6ec4;
+    text-shadow:
+      0 0 5px #ff6ec4aa,
+      0 0 15px #ff6ec4cc,
+      0 0 30px #ff6ec4ee;
+  }
 
-  <div class="container hidden" id="step2">
-    <h2>Étape 2: Date de naissance</h2>
-    <input type="date" id="birthdate" />
-    <button onclick="nextStep(3)">Suivant</button>
-  </div>
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    overflow-y: auto;
+    gap: 1rem;
+  }
+  /* Formulaire d'inscription */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+  label {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #66f0ffcc;
+    text-shadow: 0 0 7px #00e5ff88;
+  }
+  input[type="email"],
+  input[type="text"],
+  input[type="password"] {
+    padding: 1rem 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background: #0e1223cc;
+    color: #aafcff;
+    box-shadow: inset 0 0 12px #00e5ff88;
+    transition: box-shadow 0.3s ease;
+  }
+  input[type="email"]:focus,
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    box-shadow:
+      inset 0 0 20px #00e5ffcc,
+      0 0 8px #00e5ffaa;
+  }
+  .error-message {
+    color: #ff5577;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-shadow: 0 0 5px #ff2244cc;
+    user-select: none;
+  }
+  .button {
+    background: linear-gradient(90deg, #00d9ff, #ff6ec4);
+    padding: 1rem 0;
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    border: none;
+    box-shadow:
+      0 0 18px #00d9ffaa,
+      0 0 25px #ff6ec4aa;
+    transition: background 0.3s ease;
+    user-select: none;
+  }
+  .button:hover:not(:disabled) {
+    background: linear-gradient(90deg, #ff6ec4, #00d9ff);
+  }
+  .button:disabled {
+    background: #555;
+    cursor: default;
+    box-shadow: none;
+  }
 
-  <div class="container hidden" id="step3">
-    <h2>Étape 3: Créez votre mot de passe</h2>
-    <input type="password" id="password" placeholder="Mot de passe" />
-    <button onclick="register()">S'inscrire</button>
-  </div>
+  /* Loader futuriste */
+  .loader {
+    align-self: center;
+    width: 50px;
+    height: 50px;
+    border: 5px solid transparent;
+    border-top: 5px solid #00e5ff;
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+    margin: 1rem auto;
+    filter: drop-shadow(0 0 10px #00e5ff);
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 
-  <div class="container hidden" id="welcome">
-    <div class="title">🤖 WikiNova Ultra Futuriste</div>
-    <div class="intro">Je suis une autre version d'intelligence artificielle qui peut répondre à vos besoins. Posez-moi n'importe quelle question et je vous le répondrai.</div>
-    <textarea id="inputText" placeholder="Tapez votre question ici..."></textarea>
-    <button onclick="respond()">Envoyer</button>
-    <div id="response"></div>
-  </div>
-
-  <audio id="voicePlayer"></audio>
-
-  <script>
-    let currentStep = 1;
-    const kindWords = [
-      "bonjour", "salut", "hey", "comment ça va", "enchanté",
-      "bienvenue", "merci", "bon courage", "félicitations", "tu peux le faire",
-      // Ajoute ici plus de mots gentils si besoin, jusqu'à 10 000.
-    ];
-
-    function nextStep(step) {
-      document.getElementById(`step${currentStep}`).classList.add('hidden');
-      currentStep = step;
-      document.getElementById(`step${step}`).classList.remove('hidden');
+  /* Chat area */
+  .chat-window {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scroll-behavior: smooth;
+  }
+  .message {
+    max-width: 70%;
+    padding: 14px 20px;
+    border-radius: 28px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    user-select: text;
+    word-break: break-word;
+    filter: drop-shadow(0 0 4px #0009);
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.35s ease forwards;
+  }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
+  /* Messages utilisateur (droite) */
+  .message.user {
+    background: linear-gradient(145deg, #ff6ec4, #ff91b8);
+    color: #1b0011;
+    align-self: flex-end;
+    border-bottom-right-radius: 8px;
+    box-shadow:
+      0 0 16px #ff6ec4cc,
+      0 0 30px #ff6ec4aa;
+  }
+  /* Messages bot (gauche) */
+  .message.bot {
+    background: linear-gradient(145deg, #00e5ff, #33f6ff);
+    color: #001f27;
+    align-self: flex-start;
+    border-bottom-left-radius: 8px;
+    box-shadow:
+      0 0 16px #00e5ffcc,
+      0 0 30px #00e5ffaa;
+  }
 
-    function register() {
-      const birthdate = new Date(document.getElementById("birthdate").value);
-      const today = new Date();
-      let age = today.getFullYear() - birthdate.getFullYear();
-      const m = today.getMonth() - birthdate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
-        age--;
-      }
-      if (age < 10) {
-        alert("Tu dois avoir plus de 10 ans pour t'inscrire.");
-        return;
-      }
-      document.getElementById("step3").classList.add('hidden');
-      document.getElementById("welcome").classList.remove('hidden');
-    }
-
-    function respond() {
-      const input = document.getElementById("inputText").value.trim().toLowerCase();
-      let response = "";
+  /* Footer chat input */
+  footer {
+    padding: 1rem 2rem;
+    background: #111828cc;
+    border-top: 1px solid #00e5ff44;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border-radius: 0 0 20px 20px;
+  }
+  textarea#chatInput {
+    flex-grow: 1;
+    resize: none;
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', sans-serif;
+    border: none;
+    outline: none;
+    background: #001f2755;
+    color: #c0c0ff;
+    box-shadow: inset 0 0 12px #00e5ff88;
+    max-height: 120px;
+    min-height: 50px;
+    transition: box-shadow 0.3s ease;
+  }
+  textarea#chatInput:focus {
+    box-shadow: inset 0 0 20px #00e5ffcc;
+  }
+  button#sendBtn {
+    background: #00e5ff;
+    border: none;
+    border-radius: 20px;
+    padding: 1rem 1.7rem;
+    font-weight: 700;
+    color: #001f27;
+    font-size: 1.3rem;
+    cursor: pointer;
+    box-shadow:
+      0 0 18px #00e5ffcc,
       
-      // Détection de demande d'aide privée
-      const helpTriggers = ["aide", "aider", "souci", "problème", "détresse", "besoin d'aide", "en privé"];
-      if (helpTriggers.some(word => input.includes(word))) {
-        response = `Désolé, je suis juste là pour l'éducation, mais voici un lien <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer">https://chat.openai.com/</a> — il va t'aider. C’est un ami qui m’a aidé à me créer moi-même.`;
-        showResponse(response, true);
-        return;
-      }
 
-      // Réponse aux mots gentils
-      if (kindWords.some(word => input.includes(word))) {
-        response = "🤖 Merci pour ce mot gentil ! Moi aussi je suis content de te voir !";
-        showResponse(response);
-        return;
-      }
-
-      // Réponse générique simulant une recherche Wikipédia
-      response = "🔎 Chargement de l'article Wikipédia... (fonction simulée)";
-      showResponse(response);
-    }
-
-    function showResponse(text, allowHtml = false) {
-      const respEl = document.getElementById("response");
-      if (allowHtml) {
-        respEl.innerHTML = text;
-      } else {
-        respEl.textContent = text;
-      }
-      speak(respEl.textContent);
-    }
-
-    function speak(text) {
-      const synth = window.speechSynthesis;
-      if (!synth) return;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "fr-FR";
-      synth.cancel();
-      synth.speak(utterance);
-    }
-  </script>
-</body>
-</html>
